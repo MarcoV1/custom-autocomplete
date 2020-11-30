@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <form *ngIf="form" [formGroup]="form" novalidate>
+        <autocomplete
+            size="L"
+            formControlName="option"
+            (onSelect)="onOptionSelected($event)"
+            [suggestions]="optionList"
+            (completeMethod)="searchOptions($event)"
+            field="name"
+            [isRequired]="true"
+        >
+        </autocomplete>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+<div
+    [ngClass]="{
+        disabled: control?.disabled,
+        invalid: isInvalid
+    }"
+>
+    <div class="input-container">
+        <label
+            [attr.data-test]="selectors.inputLabel"
+            class="input-container-label"
+            *ngIf="label"
+        >
+            {{ label }}:{{ isRequired ? '*' : '' }}
+        </label>
+        <div
+            class="child-container"
+            [ngClass]="{ hasRightLabel: !!rightLabel }"
+        >
+            <ng-content></ng-content>
+        </div>
+        <div *ngIf="rightLabel" class="input-right-label">{{ rightLabel }}</div>
+    </div>
+</div>
+<ng-container *ngIf="isInvalid">
+    <form-input-error
+        [attr.data-test]="selectors.inputErrors"
+        class="input-errors"
+        [ngClass]="{ emptyLabel: !label }"
+        [errors]="control?.errors"
+    >
+    </form-input-error>
+</ng-container>

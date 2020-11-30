@@ -1,0 +1,37 @@
+<input-container
+    [label]="label"
+    [control]="formControl"
+    [ngClass]="{ disabled: formControl?.disabled }"
+    [isRequired]="isRequired"
+    [isInvalid]="hasErrors"
+    data-test="input-container"
+>
+    <div
+        #container
+        class="input-text-container"
+        [attr.size]="size"
+        [ngClass]="{
+            isInvalid: hasErrors
+        }"
+    >
+        <p-autoComplete
+          #auto
+            data-test="autocomplete"
+            [(ngModel)]="selectedValue"
+            [suggestions]="suggestionsList"
+            [dropdown]="true"
+            [field]="field"
+            [emptyMessage]="emptyMessage"
+            [forceSelection]="true"
+            [multiple]="multiple"
+            [disabled]="disabled"
+            (completeMethod)="completeMethod.emit($event)"
+            (onFocus)="onFocus.emit($event)"
+            (onSelect)="select($event)"
+            (onDropdownClick)="onDropdownClick.emit($event)"
+            (onBlur)="onTouched()"
+            (onClear)="clear()"
+        >
+        </p-autoComplete>
+    </div>
+</input-container>
